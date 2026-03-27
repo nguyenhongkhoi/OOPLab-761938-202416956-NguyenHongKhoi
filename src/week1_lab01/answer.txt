@@ -1,0 +1,12 @@
+b1. Nếu dùng chọn "Cancel":
+Chương trình sẽ hiện hộp thoại thông báo "You’ve chosen: No". Lý do là
+ở dòng 8, toán tử 3 ngôi chỉ kiểm tra xem option == JOptionPane.YES_OPTION
+hay không. Nên khi chọn Cancel, giá trị trả về khác YES_OPTION, nên biểu
+thức tự động lấy giá trị sai là "No".
+
+b2. Cách tùy chỉnh cho người dùng:
+• Để chỉ hiện 2 nút "Yes"và "No": Ta thêm tham số JOptionPane.YES_NO_OPTION
+vào hàm showConfirmDialog.
+• Để đổi chữ trên nút theo ý muốn (Vd: "I do"và "I don’t"):
+Ta cần chuyển sang dùng hàm JOptionPane.showOptionDialog()
+và truyền vào một mảng chứa các chuỗi lựa chọn.
