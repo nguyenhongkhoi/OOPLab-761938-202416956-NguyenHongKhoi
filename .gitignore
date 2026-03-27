@@ -1,0 +1,28 @@
+# --- IntelliJ IDEA ---
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# --- VS Code ---
+.vscode/
+.history/
+*.code-workspace
+
+# --- Java & Build Tools ---
+# Loại bỏ các file đã biên dịch
+*.class
+# Nếu sau này bạn dùng Maven, hãy chặn thư mục target
+target/
+# Các file nén thực thi
+*.jar
+*.war
+*.ear
+
+# --- OS Metadata ---
+.DS_Store
+Thumbs.db
+
+# --- Log files ---
+*.log
