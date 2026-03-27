@@ -26,7 +26,7 @@ public class DaysInMonth {
                 days = 30;
                 break;
             case 2:
-                // kiem tra nam nhuan
+                // check nam nhuan
                 if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
                     days = 29;
                 } else {
