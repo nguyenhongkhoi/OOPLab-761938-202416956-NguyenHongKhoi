@@ -1,4 +1,4 @@
-package src.week1_lab01;
+package src.week1_lab01.Bai2_2_5_page7_8;
 
 import javax.swing.JOptionPane;
 
