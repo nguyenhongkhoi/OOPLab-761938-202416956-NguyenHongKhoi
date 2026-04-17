@@ -15,19 +15,19 @@ public class Cart {
 
     public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
         int indexFound = -1;
-
+        
+        //Tìm vị trícủa đĩa cần xóa
         for (int i = 0; i < qtyOrdered; i++) {
             if (itemsOrdered[i] == disc) {
-                indexFound = i;
                 break;
             }
         }
-
+        //xóa & dồn mảng
         if (indexFound != -1) {
             for (int i = indexFound; i < qtyOrdered - 1; i++) {
-                itemsOrdered[i] = itemsOrdered[i + 1];
+                itemsOrdered[i] = itemsOrdered[i + 1]; 
             }
-            itemsOrdered[qtyOrdered - 1] = null;
+            itemsOrdered[qtyOrdered - 1] = null; 
             qtyOrdered--;
             System.out.println("The disc has been removed.");
         } else {
