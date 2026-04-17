@@ -1,5 +1,7 @@
 package hust.soict.dsai.aims.cart;
 
+import hust.soict.dsai.aims.media.Book;
+import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
 import java.util.ArrayList;
 
@@ -19,6 +21,15 @@ public class Cart {
         }
     }
 
+    public Media searchByTitle(String title) {
+        for (Media m : itemsOrdered) {
+            if (m.getTitle().equalsIgnoreCase(title)) {
+                return m;
+            }
+        }
+        return null;
+    }
+
     public float totalCost() {
         float total = 0;
         for (Media m : itemsOrdered)
@@ -30,7 +41,8 @@ public class Cart {
         System.out.println("***********************CART***********************");
         System.out.println("Ordered Items:");
         for (Media m : itemsOrdered) {
-            System.out.println(m.getId() + ". DVD - " + m.getTitle() + " - " + m.getCost() + "$");
+            String type = (m instanceof DigitalVideoDisc) ? "DVD" : (m instanceof Book) ? "Book" : "Media";
+            System.out.println(m.getId() + ". " + type + " - " + m.getTitle() + " - " + m.getCost() + "$");
         }
         System.out.println("Total cost: " + totalCost() + "$");
         System.out.println("***************************************************");

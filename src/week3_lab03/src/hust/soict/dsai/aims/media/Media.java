@@ -27,11 +27,20 @@ public abstract class Media {
         return cost;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    @Override
+    public String toString() {
+        return id + ". " + title + " (" + category + ") - " + cost + "$";
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Media) {
             Media other = (Media) obj;
-            return this.title.equals(other.title);
+            return this.title.equalsIgnoreCase(other.title);
         }
         return false;
     }
