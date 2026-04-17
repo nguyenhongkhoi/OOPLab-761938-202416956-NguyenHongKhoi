@@ -18,7 +18,7 @@ public class Store {
     public void print() {
         System.out.println("--- STORE ITEMS ---");
         for (Media m : itemsInStore) {
-            System.out.println(m.getTitle() + " - " + m.getCost() + "$");
+            System.out.println(m.toString());
         }
     }
 
