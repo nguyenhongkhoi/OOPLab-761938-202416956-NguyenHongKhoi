@@ -1,0 +1,73 @@
+1. Compare Swing and AWT elements?
+So sánh các phần tử trong Swing và AWT:
+
+Lập trình với AWT và Swing khá giống nhau vì chúng đều có các thành phần như container (bộ chứa), component (thành phần), và cơ chế xử lý sự kiện. Tuy nhiên, vẫn có một số điểm khác biệt đáng lưu ý:
+
+So sánh container cấp cao nhất:
+
+AWT:
+Container cấp cao nhất là Frame. Trong chương trình AWTAccumulator, lớp sẽ kế thừa từ Frame để tạo một cửa sổ.
+Frame là thành phần nặng (heavyweight), nghĩa là nó sử dụng các thành phần giao diện người dùng gốc của hệ điều hành (như Windows hoặc macOS). Vì vậy, nó phụ thuộc vào hệ điều hành.
+Các thành phần được thêm trực tiếp vào Frame bằng lệnh add(component).
+
+Swing:
+Container cấp cao nhất là JFrame. Trong chương trình SwingAccumulator, lớp sẽ kế thừa từ JFrame để tạo một cửa sổ.
+JFrame là thành phần nhẹ (lightweight), được Java tự vẽ hoàn toàn và không phụ thuộc vào các thành phần gốc của hệ điều hành.
+JFrame cho giao diện đồng nhất trên mọi nền tảng.
+Các thành phần được thêm thông qua ContentPane, bằng cách sử dụng getContentPane().add(component).
+
+So sánh tên lớp các thành phần:
+
+AWT sử dụng Label, trong khi Swing sử dụng JLabel. JLabel có thể hiển thị biểu tượng hình ảnh và có tooltip.
+
+AWT dùng TextField, còn Swing dùng JTextField. JTextField cho phép tùy chỉnh nhiều hơn như font chữ, viền, và cách xử lý nhập liệu.
+
+AWT có TextArea, còn Swing có JTextArea. JTextArea hỗ trợ cuộn nếu được kết hợp với JScrollPane.
+
+AWT dùng Button, còn Swing dùng JButton. JButton hỗ trợ thêm biểu tượng và các trạng thái bật/tắt.
+
+AWT dùng Checkbox, còn Swing dùng JCheckBox. JCheckBox hiện đại hơn và dễ tùy biến hơn.
+
+AWT có List, còn Swing có JList. JList linh hoạt hơn và có thể làm việc với các mô hình dữ liệu phức tạp.
+
+AWT dùng Menu, còn Swing dùng JMenu. JMenu tích hợp tốt hơn với thanh menu (JMenuBar).
+
+So sánh xử lý sự kiện:
+
+AWT:
+Sử dụng các giao diện như ActionListener, WindowListener từ gói java.awt.event. Ví dụ, tfInput.addActionListener(new TFInputListener()) được dùng để xử lý sự kiện khi người dùng nhấn Enter trong ô nhập liệu.
+Việc xử lý sự kiện khi đóng cửa sổ cần cài đặt thêm addWindowListener với một lớp con của WindowAdapter.
+Cơ chế xử lý sự kiện đơn giản nhưng yêu cầu thêm mã để xử lý các sự kiện cửa sổ.
+Ít tùy chọn nâng cao hơn so với Swing.
+
+Swing:
+Cũng sử dụng các giao diện như ActionListener, nhưng bổ sung thêm các listener chuyên biệt như MouseInputListener, CaretListener, v.v.
+Cách sử dụng tương tự AWT, ví dụ tfInput.addActionListener(new TFInputListener()).
+Không cần cài đặt WindowListener vì chỉ cần gọi setDefaultCloseOperation để xử lý khi đóng cửa sổ.
+Hỗ trợ xử lý sự kiện phức tạp hơn, bao gồm chuột, bàn phím...
+Có thêm tiện ích như JOptionPane để hiển thị thông báo lỗi, thứ mà AWT không có.
+
+2. The resulting appearances of the applications developed using Swing and AWT might be different as well. Make comparisons?
+Giao diện của ứng dụng phát triển bằng Swing và AWT cũng có thể khác nhau. Hãy so sánh:
+
+AWT:
+
+Giao diện sử dụng thành phần gốc của hệ điều hành, nghĩa là mỗi hệ điều hành sẽ hiển thị khác nhau.
+
+Không đảm bảo tính nhất quán về giao diện giữa các nền tảng.
+
+Không hỗ trợ tùy chỉnh giao diện (Look and Feel).
+
+Các thành phần như cửa sổ, nhãn, ô nhập liệu sẽ mang phong cách của hệ điều hành (ví dụ như viền, màu sắc, font chữ theo hệ thống).
+
+Swing:
+
+Các thành phần là lightweight và được vẽ hoàn toàn bởi Java.
+
+Giao diện đồng nhất trên mọi nền tảng vì không phụ thuộc vào hệ điều hành.
+
+Hỗ trợ thay đổi giao diện (Look and Feel) như Metal, Nimbus, hoặc giả lập giao diện hệ điều hành thông qua UIManager.setLookAndFeel.
+
+Giao diện hiện đại hơn, hỗ trợ viền mềm mại, font chữ tùy chỉnh, và biểu tượng hình ảnh.
+
+Hiển thị nhất quán trên mọi nền tảng, không bị ảnh hưởng bởi hệ điều hành.
