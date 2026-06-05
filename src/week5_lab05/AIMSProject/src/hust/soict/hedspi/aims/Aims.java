@@ -1,10 +1,8 @@
 package hust.soict.hedspi.aims;
 
 import java.util.*;
-import javax.swing.JOptionPane;
 
 import hust.soict.hedspi.aims.cart.Cart;
-import hust.soict.hedspi.aims.exception.PlayerException;
 import hust.soict.hedspi.aims.media.Book;
 import hust.soict.hedspi.aims.media.CompactDisc;
 import hust.soict.hedspi.aims.media.DigitalVideoDisc;
@@ -18,6 +16,7 @@ public class Aims {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+        // Sample media added for testing
         store.addMedia(new DigitalVideoDisc("Avengers", "Action", "Joss Whedon", 143, 20.0f));
         store.addMedia(new Book("Harry Potter", "Fantasy", 15.0f));
         store.addMedia(new CompactDisc("Hybrid Theory", "Rock", 10.0f, "Linkin Park", 45, "Chester"));
@@ -72,7 +71,7 @@ public class Aims {
     public static void storeMenu() {
         System.out.println("Options: ");
         System.out.println("--------------------------------");
-        System.out.println("1. See a media's details");
+        System.out.println("1. See a media’s details");
         System.out.println("2. Add a media to cart");
         System.out.println("3. Play a media");
         System.out.println("4. See current cart");
@@ -87,14 +86,15 @@ public class Aims {
         Media media = store.searchByTitle(title);
         if (media != null) {
             System.out.println(media);
-            mediaDetailsMenu(media instanceof Playable);
+            if (media instanceof Playable) {
+                mediaDetailsMenu(true);
+            } else {
+                mediaDetailsMenu(false);
+            }
             int option = scanner.nextInt();
             scanner.nextLine();
-            if (option == 1) {
-                cart.addMedia(media);
-            } else if (option == 2 && media instanceof Playable playable) {
-                playMediaSafely(playable);
-            }
+            if (option == 1) cart.addMedia(media);
+            else if (option == 2 && media instanceof Playable playable) playable.play();
         } else {
             System.out.println("Media not found.");
         }
@@ -104,9 +104,7 @@ public class Aims {
         System.out.println("Options: ");
         System.out.println("--------------------------------");
         System.out.println("1. Add to cart");
-        if (isPlayable) {
-            System.out.println("2. Play");
-        }
+        if (isPlayable) System.out.println("2. Play");
         System.out.println("0. Back");
         System.out.println("--------------------------------");
         System.out.println("Please choose a number: 0-1-" + (isPlayable ? "2" : "1"));
@@ -128,7 +126,7 @@ public class Aims {
         String title = scanner.nextLine();
         Media media = store.searchByTitle(title);
         if (media instanceof Playable playable) {
-            playMediaSafely(playable);
+            playable.play();
         } else {
             System.out.println("Cannot play this media.");
         }
@@ -145,9 +143,7 @@ public class Aims {
             store.addMedia(new Book(title, "Unknown", 0));
         } else if (option == 2) {
             Media media = store.searchByTitle(title);
-            if (media != null) {
-                store.removeMedia(media);
-            }
+            if (media != null) store.removeMedia(media);
         }
     }
 
@@ -205,7 +201,7 @@ public class Aims {
         int opt = scanner.nextInt();
         scanner.nextLine();
         if (opt == 1) {
-            cart.sortByTitleCost();
+            cart.sortByCostTitle();
         } else {
             cart.sortByCostTitle();
         }
@@ -215,9 +211,7 @@ public class Aims {
         System.out.print("Enter title to remove: ");
         String title = scanner.nextLine();
         Media media = cart.searchByTitle(title);
-        if (media != null) {
-            cart.removeMedia(media);
-        }
+        if (media != null) cart.removeMedia(media);
     }
 
     public static void playCartMedia() {
@@ -225,7 +219,7 @@ public class Aims {
         String title = scanner.nextLine();
         Media media = cart.searchByTitle(title);
         if (media instanceof Playable playable) {
-            playMediaSafely(playable);
+            playable.play();
         } else {
             System.out.println("Cannot play this media.");
         }
@@ -234,16 +228,5 @@ public class Aims {
     public static void placeOrder() {
         System.out.println("Order created!");
         cart.clear();
-    }
-
-    private static void playMediaSafely(Playable playable) {
-        try {
-            playable.play();
-        } catch (PlayerException e) {
-            System.err.println("PlayerException caught: " + e.getMessage());
-            System.err.println(e.toString());
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Media Playback Error", JOptionPane.ERROR_MESSAGE);
-        }
     }
 }

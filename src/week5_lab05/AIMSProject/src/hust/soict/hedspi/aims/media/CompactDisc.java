@@ -26,15 +26,6 @@ public class CompactDisc extends Media implements Playable {
         super(title, category, cost);
         this.artist = artist;
     }
-
-    public CompactDisc(String title, String category, float cost, String director, int length, String artist) {
-        super(title, category, cost);
-        this.director = director;
-        this.artist = artist;
-        if (length > 0) {
-            this.tracks.add(new Track(title + " Track", length));
-        }
-    }
     
     public CompactDisc(String title, String category, String artist, String director, float cost) {
         super(title, category, cost);
@@ -81,6 +72,7 @@ public class CompactDisc extends Media implements Playable {
     }
 
     // Tính tổng thời lượng của CD
+    @Override
     public int getLength() {
         int totalLength = 0;
         for (Track track : tracks) {
