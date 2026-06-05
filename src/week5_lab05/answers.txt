@@ -1,0 +1,14 @@
+1. The Aims class must be updated to handle any exceptions generated when the play() methods are called.
+What happens when you do not update it to catch them?
+
+PlayerException is a checked exception because it extends Exception.
+That means every place that calls play() must either:
+- catch the exception with try-catch, or
+- delegate it with throws.
+
+If the Aims class is not updated after Playable.play() changes to throws PlayerException,
+the program will not compile. The Java compiler reports an "unhandled exception PlayerException"
+error at each call site of play().
+
+If this were an unchecked exception instead, the code could still compile, but the program could
+terminate at runtime when the exception is thrown and not handled.
