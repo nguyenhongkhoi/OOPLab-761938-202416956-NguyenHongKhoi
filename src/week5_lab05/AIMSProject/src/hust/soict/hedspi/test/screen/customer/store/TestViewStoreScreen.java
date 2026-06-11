@@ -1,9 +1,6 @@
-package hust.soict.hedspi.test.screen.customer.store;
+package hust.soict.hedspi.test.screen.customer.store; // Đảm bảo đúng với tên package của bạn
+// Ví dụ: package hust.soict.globalict.test.screen.customer.store;
 
-import hust.soict.hedspi.aims.cart.Cart;
-import hust.soict.hedspi.aims.media.Book;
-import hust.soict.hedspi.aims.media.CompactDisc;
-import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 import hust.soict.hedspi.aims.screen.customer.controller.ViewStoreController;
 import hust.soict.hedspi.aims.store.Store;
 import javafx.application.Application;
@@ -12,16 +9,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
+
 public class TestViewStoreScreen extends Application {
     private static Store store;
-    private static Cart cart;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        final String storeFxmlFilePath = "/hust/soict/hedspi/aims/screen/customer/view/Store.fxml";
+        final String STORE_FXML_FILE_PATH = "/hust/soict/[globalict/dsai]/aims/screen/customer/view/Store.fxml";
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(storeFxmlFilePath));
-        ViewStoreController viewStoreController = new ViewStoreController(store, cart);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(STORE_FXML_FILE_PATH));
+        ViewStoreController viewStoreController = new ViewStoreController(store);
         fxmlLoader.setController(viewStoreController);
 
         Parent root = fxmlLoader.load();
@@ -33,11 +31,8 @@ public class TestViewStoreScreen extends Application {
 
     public static void main(String[] args) {
         store = new Store();
-        cart = new Cart();
 
-        store.addMedia(new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f));
-        store.addMedia(new Book("Clean Code", "Programming", 29.99f));
-        store.addMedia(new CompactDisc("Random Access Memories", "Music", 15.99f, "Daft Punk", 74, "Daft Punk"));
+        // TODO: Thêm các media (DVD, CD, Book) vào store ở đây
 
         launch(args);
     }
